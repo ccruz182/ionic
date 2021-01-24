@@ -1,0 +1,25 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      My Profile
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-avatar class="profile-pic" (click)="selectImageSource()">
+    <ion-img [src]="(myStoredProfileImage | async)?.image_src"></ion-img>
+  </ion-avatar>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>
+        César Cruz
+      </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      Fullstack developer
+    </ion-card-content>
+  </ion-card>
+</ion-content>

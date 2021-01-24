@@ -1,0 +1,12 @@
+<ion-content color="dark">
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button (click)="closeModal()" color="danger">
+      <ion-icon name="close"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <video class="activity-video" autoplay>
+    <source [src]="videoURL" />
+  </video>
+
+</ion-content>
