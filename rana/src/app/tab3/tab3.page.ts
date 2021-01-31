@@ -5,6 +5,7 @@ import { AlertController } from "@ionic/angular";
 import { Camera, CameraOptions } from "@ionic-native/camera/ngx";
 import { AngularFirestore } from "@angular/fire/firestore";
 import { AngularFireAuth } from "@angular/fire/auth";
+import { AngularFireStorage } from "@angular/fire/storage";
 
 @Component({
   selector: "app-tab3",
@@ -16,16 +17,28 @@ export class Tab3Page implements OnInit {
 
   myStoredProfileImage: Observable<any>;
 
+  aURL;
+
+
   constructor(
     private _camera: Camera,
     private _alertController: AlertController,
     private _angularFireStore: AngularFirestore,
-    private _angularFireAuth: AngularFireAuth
+    private _angularFireAuth: AngularFireAuth,
+    private _angularFireStorage: AngularFireStorage
   ) {}
 
    ngOnInit() {
-     console.log("OK1")
+     console.log("OK1");
+
+     const ref = this._angularFireStorage.ref("Goals.PNG");
+     this.aURL = ref.getDownloadURL();
+    ref.getDownloadURL().subscribe(url => {
+      console.log("URL =>", url)
+    }, error => console.log("ERROR"));
+
     this._angularFireAuth.currentUser.then(user => {
+      console.log("** user", user); 
       this.myStoredProfileImage = this._angularFireStore
       .collection("user")
       .doc(user.uid)
